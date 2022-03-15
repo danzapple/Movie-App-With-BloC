@@ -52,8 +52,8 @@ Movie DB is an application to show all movies in the world. The data is provide 
 </div>
 
 
-<!-- ## Author -->
-<!-- <center>
+## Author
+<center>
   <table>
     <tr>
       <td align="center">
@@ -64,4 +64,4 @@ Movie DB is an application to show all movies in the world. The data is provide 
       </td>
     </tr>
   </table>
-</center> -->
+</center>
