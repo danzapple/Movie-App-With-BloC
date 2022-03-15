@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class SectionHeader extends StatelessWidget {
   final String title;
   final String subtitle;
-  final Function onTap;
+  final Function? onTap;
   final double titleFontSize;
   final FontWeight titleFontWeight;
   final double subtitleFontSize;
 
   SectionHeader({
-    @required this.title,
-    @required this.subtitle,
+    required this.title,
+    required this.subtitle,
     this.onTap,
     this.titleFontSize = 14.0,
     this.titleFontWeight = FontWeight.w600,

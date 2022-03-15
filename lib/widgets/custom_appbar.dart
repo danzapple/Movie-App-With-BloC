@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/constants/navigation.dart';
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool showSearchButton;
 
   CustomAppBar({this.showSearchButton = true});
@@ -12,13 +12,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
       title: Text('Movies DB'),
       elevation: 0.0,
       actions: [
-        showSearchButton ? IconButton(
-          icon: Icon(Icons.search),
-          onPressed: () => Navigator.pushNamed(
-            context,
-            Navigation.SearchPage,
-          ),
-        ) : Container(),
+        showSearchButton
+            ? IconButton(
+                icon: Icon(Icons.search),
+                onPressed: () => Navigator.pushNamed(
+                  context,
+                  Navigation.SearchPage,
+                ),
+              )
+            : Container(),
         IconButton(
           icon: Icon(
             Icons.settings,
@@ -34,5 +36,4 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
 
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
-
 }

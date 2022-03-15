@@ -4,24 +4,24 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:movie_app/configs/configs.dart';
 
 class MovieCard extends StatelessWidget {
-  final String title;
-  final String poster;
-  final double rating;
+  final String? title;
+  final String? poster;
+  final double? rating;
   final Function onTap;
-  final String subtitle;
+  final String? subtitle;
 
   MovieCard({
-    @required this.title,
-    @required this.poster,
+    required this.title,
+    required this.poster,
     this.rating,
     this.subtitle,
-    @required this.onTap,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap as void Function()?,
       child: Container(
         padding: EdgeInsets.only(
           top: 8.0,
@@ -68,7 +68,7 @@ class MovieCard extends StatelessWidget {
                           0,
                           0.1,
                         ),
-                        onTap: onTap,
+                        onTap: onTap as void Function()?,
                       ),
                     ),
                   ),
@@ -84,7 +84,7 @@ class MovieCard extends StatelessWidget {
                   top: 8.0,
                 ),
                 child: Text(
-                  title,
+                  title!,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   style: TextStyle(
@@ -106,7 +106,7 @@ class MovieCard extends StatelessWidget {
                 ),
                 child: rating == null
                     ? Text(
-                        subtitle,
+                        subtitle!,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                         style: TextStyle(
@@ -130,16 +130,15 @@ class MovieCard extends StatelessWidget {
                             padding: EdgeInsets.only(
                               left: 4.0,
                             ),
-                            child: RatingBar(
-                              onRatingUpdate: null,
+                            child: RatingBar.builder(
                               itemCount: 5,
                               ignoreGestures: true,
                               itemSize: 12.0,
-                              initialRating: rating / 2,
+                              initialRating: rating! / 2,
                               itemBuilder: (context, _) => Icon(
                                 Icons.star,
                                 color: Colors.amber,
-                              ),
+                              ), onRatingUpdate: (double value) {  },
                             ),
                           ),
                         ],

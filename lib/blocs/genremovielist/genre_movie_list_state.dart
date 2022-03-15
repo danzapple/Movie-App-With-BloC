@@ -17,10 +17,10 @@ class GenreMovieListLoadInProgress extends GenreMovieListState {
 class GenreMovieListLoadSuccess extends GenreMovieListState {
   GenreMovieListLoadSuccess(this.genreMovieLists);
 
-  final List<MovieList> genreMovieLists;
+  final List<MovieList>? genreMovieLists;
 
   @override
-  List<Object> get props => [genreMovieLists];
+  List<Object?> get props => [genreMovieLists];
 }
 
 class GenreMovieListLoadFailure extends GenreMovieListState {

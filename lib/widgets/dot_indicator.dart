@@ -4,10 +4,10 @@ import 'package:movie_app/constants/colors.dart';
 import 'package:movie_app/models/movie_list.dart';
 
 class DotIndicator extends StatelessWidget {
-  final List<MovieList> lists;
+  final List<MovieList>? lists;
   final int currentIndex;
 
-  DotIndicator({@required this.lists, @required this.currentIndex});
+  DotIndicator({required this.lists, required this.currentIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +17,8 @@ class DotIndicator extends StatelessWidget {
       right: 0.0,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: lists.sublist(0, 5).map((item) {
-          int index = lists.indexOf(item);
+        children: lists!.sublist(0, 5).map((item) {
+          int index = lists!.indexOf(item);
           return Container(
             width: 5.0,
             height: 5.0,

@@ -6,9 +6,9 @@ class SearchFormField extends StatelessWidget {
   final String placeHolder;
 
   SearchFormField({
-    @required this.controller,
-    @required this.onChanged,
-    @required this.placeHolder,
+    required this.controller,
+    required this.onChanged,
+    required this.placeHolder,
   });
 
   @override

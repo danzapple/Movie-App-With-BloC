@@ -18,10 +18,10 @@ class TopRatedMovieLoadInProgress extends TopRatedMovieState {
 class TopRatedMovieLoadSuccess extends TopRatedMovieState {
   TopRatedMovieLoadSuccess(this.topRatedMovies);
 
-  final List<MovieList> topRatedMovies;
+  final List<MovieList>? topRatedMovies;
 
   @override
-  List<Object> get props => [topRatedMovies];
+  List<Object?> get props => [topRatedMovies];
 }
 
 class TopRatedMovieLoadFailure extends TopRatedMovieState {

@@ -21,7 +21,7 @@ import 'package:movie_app/widgets/section_header.dart';
 List<String> popupMenuItem = ['Share', 'Visit Website'];
 
 class DetailMovie extends StatefulWidget {
-  final int movieId;
+  final int? movieId;
   DetailMovie({this.movieId});
 
   @override
@@ -33,21 +33,22 @@ class _DetailMovieState extends State<DetailMovie> {
 
   @override
   void initState() {
-    context.bloc<MovieDetailCubit>().getMovieDetail(widget.movieId);
-    context.bloc<MovieCastCubit>().getMovieCast(widget.movieId);
-    context.bloc<SimiliarMovieCubit>().getSimiliarMovies(widget.movieId);
-    super.initState();
+    // BlocProvider.of<MovieDetailCubit>(context).getMovieDetail(widget.movieId);
+    // BlocProvider.of<MovieCastCubit>(context).getMovieCast(widget.movieId);
+    // BlocProvider.of<SimiliarMovieCubit>(context)
+    //     .getSimiliarMovies(widget.movieId);
+    // super.initState();
   }
 
-  _onSelectedPopupMenu(String value, String homePage) {
+  _onSelectedPopupMenu(String value, String? homePage) {
     if (value == 'Share') {
       return null;
     } else {
-      return Helper.launchUrl(homePage);
+      return Helper.launchUrl(homePage!);
     }
   }
 
-  void _onPressMovie(int movieId) {
+  void _onPressMovie(int? movieId) {
     if (movieId != null) {
       Navigator.pushNamed(context, Navigation.MovieDetail, arguments: movieId);
     }
@@ -78,7 +79,7 @@ class _DetailMovieState extends State<DetailMovie> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _featuredImages(data.images.backdrops),
+                _featuredImages(data.images!.backdrops!),
                 _movieTitleInfo(data),
                 _divider(),
                 _movieDescInfo(data),
@@ -128,7 +129,7 @@ class _DetailMovieState extends State<DetailMovie> {
                   controller: _scrollController,
                   scrollDirection: Axis.horizontal,
                   child: Text(
-                    data.title,
+                    data.title!,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: TextStyle(
@@ -147,7 +148,7 @@ class _DetailMovieState extends State<DetailMovie> {
                   icon: Icon(Icons.more_vert, color: Colors.white),
                   tooltip: 'More options',
                   elevation: 5,
-                  onSelected: (value) =>
+                  onSelected: (dynamic value) =>
                       _onSelectedPopupMenu(value, data.homepage),
                   itemBuilder: (context) => popupMenuItem.map((menu) {
                     return PopupMenuItem(
@@ -171,7 +172,7 @@ class _DetailMovieState extends State<DetailMovie> {
               children: <TextSpan>[
                 TextSpan(text: '• '),
                 TextSpan(
-                  text: Helper.convertHoursMinutes(data.runtime),
+                  text: Helper.convertHoursMinutes(data.runtime!),
                   style: TextStyle(
                     fontSize: 12.0,
                   ),
@@ -210,9 +211,9 @@ class _DetailMovieState extends State<DetailMovie> {
                     height: 30,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: data.genres.length,
+                      itemCount: data.genres!.length,
                       itemBuilder: (context, index) {
-                        Genre genre = data.genres[index];
+                        Genre genre = data.genres![index];
                         return Padding(
                           padding: EdgeInsets.only(right: 6.0),
                           child: Container(
@@ -228,7 +229,7 @@ class _DetailMovieState extends State<DetailMovie> {
                                 horizontal: 12,
                               ),
                               child: Text(
-                                genre.name,
+                                genre.name!,
                                 style: TextStyle(
                                   color: Colors.white,
                                 ),
@@ -242,7 +243,7 @@ class _DetailMovieState extends State<DetailMovie> {
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0),
                     child: Text(
-                      data.overview,
+                      data.overview!,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 5,
                       style: TextStyle(
@@ -323,7 +324,7 @@ class _DetailMovieState extends State<DetailMovie> {
                   Padding(
                     padding: const EdgeInsets.only(top: 4.0),
                     child: Text(
-                      data.revenue < 1
+                      data.revenue! < 1
                           ? 'USD -'
                           : NumberFormat.compactCurrency(
                               locale: 'en',
@@ -363,7 +364,7 @@ class _DetailMovieState extends State<DetailMovie> {
                   Padding(
                     padding: const EdgeInsets.only(top: 4.0),
                     child: Text(
-                      data.status,
+                      data.status!,
                       style: TextStyle(
                         fontSize: 14.0,
                         color: Colors.white,
@@ -406,9 +407,9 @@ class _DetailMovieState extends State<DetailMovie> {
             if (state is MovieCastLoadInProgress) {
               return CircularProgressIndicator();
             } else if (state is MovieCastLoadSuccess) {
-              int count = state.movieCasts.cast.length > 15
+              int count = state.movieCasts.cast!.length > 15
                   ? 15
-                  : state.movieCasts.cast.length;
+                  : state.movieCasts.cast!.length;
               return Container(
                 height: 250,
                 child: ListView.builder(
@@ -416,7 +417,7 @@ class _DetailMovieState extends State<DetailMovie> {
                   scrollDirection: Axis.horizontal,
                   itemCount: count,
                   itemBuilder: (context, index) {
-                    Cast data = state.movieCasts.cast[index];
+                    Cast data = state.movieCasts.cast![index];
                     return MovieCard(
                       title: data.name,
                       poster: data.profilePath,
@@ -441,7 +442,7 @@ class _DetailMovieState extends State<DetailMovie> {
         if (state is SimiliarMovieLoadInProgress) {
           return CircularProgressIndicator();
         } else if (state is SimiliarMovieLoadSuccess) {
-          List<MovieList> similiarMovies = state.similiarMovies;
+          List<MovieList> similiarMovies = state.similiarMovies!;
           return similiarMovies.length > 0
               ? Column(
                   children: [
@@ -453,9 +454,9 @@ class _DetailMovieState extends State<DetailMovie> {
                       height: 250,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: state.similiarMovies.length,
+                        itemCount: state.similiarMovies!.length,
                         itemBuilder: (context, index) {
-                          MovieList data = state.similiarMovies[index];
+                          MovieList data = state.similiarMovies![index];
                           return MovieCard(
                             title: data.title,
                             poster: data.posterPath,

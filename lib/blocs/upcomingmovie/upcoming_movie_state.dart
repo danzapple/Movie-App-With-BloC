@@ -18,10 +18,10 @@ class UpcomingMovieLoadInProgress extends UpcomingMovieState {
 class UpcomingMovieLoadSuccess extends UpcomingMovieState {
   UpcomingMovieLoadSuccess(this.upcomingMovies);
 
-  final List<MovieList> upcomingMovies;
+  final List<MovieList>? upcomingMovies;
 
   @override
-  List<Object> get props => [upcomingMovies];
+  List<Object?> get props => [upcomingMovies];
 }
 
 class UpcomingMovieLoadFailure extends UpcomingMovieState {

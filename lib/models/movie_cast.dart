@@ -4,8 +4,8 @@ class MovieCast {
     this.crew,
   });
 
-  List<Cast> cast;
-  List<Crew> crew;
+  List<Cast>? cast;
+  List<Crew>? crew;
 
   factory MovieCast.fromJson(Map<String, dynamic> json) => MovieCast(
     cast: List<Cast>.from(json["cast"].map((x) => Cast.fromJson(x))),
@@ -13,8 +13,8 @@ class MovieCast {
   );
 
   Map<String, dynamic> toJson() => {
-    "cast": List<dynamic>.from(cast.map((x) => x.toJson())),
-    "crew": List<dynamic>.from(crew.map((x) => x.toJson())),
+    "cast": List<dynamic>.from(cast!.map((x) => x.toJson())),
+    "crew": List<dynamic>.from(crew!.map((x) => x.toJson())),
   };
 }
 
@@ -30,14 +30,14 @@ class Cast {
     this.profilePath,
   });
 
-  int castId;
-  String character;
-  String creditId;
-  int gender;
-  int id;
-  String name;
-  int order;
-  String profilePath;
+  int? castId;
+  String? character;
+  String? creditId;
+  int? gender;
+  int? id;
+  String? name;
+  int? order;
+  String? profilePath;
 
   factory Cast.fromJson(Map<String, dynamic> json) => Cast(
     castId: json["cast_id"],
@@ -73,13 +73,13 @@ class Crew {
     this.profilePath,
   });
 
-  String creditId;
-  String department;
-  int gender;
-  int id;
-  String job;
-  String name;
-  String profilePath;
+  String? creditId;
+  String? department;
+  int? gender;
+  int? id;
+  String? job;
+  String? name;
+  String? profilePath;
 
   factory Crew.fromJson(Map<String, dynamic> json) => Crew(
     creditId: json["credit_id"],

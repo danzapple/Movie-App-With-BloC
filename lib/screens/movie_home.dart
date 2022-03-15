@@ -23,7 +23,7 @@ class MovieHome extends StatefulWidget {
 class _MovieHomeState extends State<MovieHome>
     with SingleTickerProviderStateMixin {
   int _current = 0;
-  TabController _tabController;
+  TabController? _tabController;
 
   @override
   void initState() {
@@ -32,14 +32,14 @@ class _MovieHomeState extends State<MovieHome>
       vsync: this,
       initialIndex: 0,
     );
-    _tabController.addListener(_handleTabIndex);
+    _tabController!.addListener(_handleTabIndex);
     super.initState();
   }
 
   @override
   void dispose() {
-    _tabController.removeListener(_handleTabIndex);
-    _tabController.dispose();
+    _tabController!.removeListener(_handleTabIndex);
+    _tabController!.dispose();
     super.dispose();
   }
 
@@ -48,12 +48,11 @@ class _MovieHomeState extends State<MovieHome>
   }
 
   void _getGenreListById(int id) {
-    context
-        .bloc<GenreMovieListCubit>()
+    BlocProvider.of<GenreMovieListCubit>(context)
         .getGenreMovieList(genreId: genres[id].id);
   }
 
-  void _onPressMovie(int movieId) {
+  void _onPressMovie(int? movieId) {
     if (movieId != null) {
       Navigator.pushNamed(context, Navigation.MovieDetail, arguments: movieId);
     }
@@ -86,7 +85,7 @@ class _MovieHomeState extends State<MovieHome>
                 } else if (state is PopularMovieLoadSuccess) {
                   return Stack(
                     children: [
-                      _buildCarouselSlider(state.popularMovies),
+                      _buildCarouselSlider(state.popularMovies!),
                       _buildCarouselIndicator(state.popularMovies),
                     ],
                   );
@@ -148,7 +147,7 @@ class _MovieHomeState extends State<MovieHome>
                     ),
                   );
                 } else if (state is TopRatedMovieLoadSuccess) {
-                  return _buildTopRatedMovie(state.topRatedMovies);
+                  return _buildTopRatedMovie(state.topRatedMovies!);
                 } else {
                   return Text(
                     'Failed Get Data Top Rated Movies',
@@ -174,7 +173,7 @@ class _MovieHomeState extends State<MovieHome>
                     ),
                   );
                 } else if (state is UpcomingMovieLoadSuccess) {
-                  return _buildUpcomingMovie(state.upcomingMovies);
+                  return _buildUpcomingMovie(state.upcomingMovies!);
                 } else {
                   return Text(
                     'Failed Get Data Upcoming Movies',
@@ -217,7 +216,7 @@ class _MovieHomeState extends State<MovieHome>
     );
   }
 
-  _buildCarouselIndicator(List<MovieList> list) {
+  _buildCarouselIndicator(List<MovieList>? list) {
     return DotIndicator(
       lists: list,
       currentIndex: _current,
@@ -239,14 +238,14 @@ class _MovieHomeState extends State<MovieHome>
       tabs: genres.map(
         (item) {
           return Tab(
-            text: item.name.toUpperCase(),
+            text: item.name!.toUpperCase(),
           );
         },
       ).toList(),
     );
   }
 
-  _buildTabBarView(List<MovieList> genreListMovies) {
+  _buildTabBarView(List<MovieList>? genreListMovies) {
     return Container(
       height: 250,
       child: TabBarView(
@@ -255,7 +254,7 @@ class _MovieHomeState extends State<MovieHome>
         children: genres.map((item) {
           return ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: genreListMovies.length,
+            itemCount: genreListMovies!.length,
             itemBuilder: (context, index) {
               MovieList data = genreListMovies[index];
               return MovieCard(

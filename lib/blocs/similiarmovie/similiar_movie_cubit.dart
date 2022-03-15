@@ -11,7 +11,7 @@ class SimiliarMovieCubit extends Cubit<SimiliarMovieState> {
 
   SimiliarMovieRepository repository = SimiliarMovieRepository();
 
-  Future<void> getSimiliarMovies(int movieId) async {
+  Future<void> getSimiliarMovies(int? movieId) async {
     try {
       emit(SimiliarMovieLoadInProgress());
       final similiarMovies = await repository.getSimiliarMovies(movieId);

@@ -10,13 +10,13 @@ class GenreMovieListCubit extends Cubit<GenreMovieListState> {
 
   GenreMovieListCubit() : super(GenreMovieListInitial());
 
-  Future<void> getGenreMovieList({int genreId = 28}) async {
+  Future<void> getGenreMovieList({int? genreId = 10}) async {
     try {
       emit(GenreMovieListLoadInProgress());
       final genreMovisLists = await repository.getGenreMovieList(genreId);
       emit(GenreMovieListLoadSuccess(genreMovisLists));
     } catch (e) {
-      throw e;
+      emit(GenreMovieListLoadFailure());
     }
   }
 }

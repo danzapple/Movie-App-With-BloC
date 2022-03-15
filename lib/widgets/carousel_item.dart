@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/configs/configs.dart';
 
 class CarouselItem extends StatelessWidget {
-  final String avatar;
-  final String title;
-  final Function onTap;
+  final String? avatar;
+  final String? title;
+  final Function? onTap;
 
   CarouselItem({
-    @required this.avatar,
-    @required this.title,
+    required this.avatar,
+    required this.title,
     this.onTap,
   });
 
@@ -55,7 +55,7 @@ class CarouselItem extends StatelessWidget {
                   0,
                   0.1,
                 ),
-                onTap: onTap,
+                onTap: onTap as void Function()?,
               ),
             ),
           ),
@@ -63,7 +63,7 @@ class CarouselItem extends StatelessWidget {
             bottom: 30.0,
             left: 10.0,
             child: Text(
-              title,
+              title!,
               style: TextStyle(
                 fontSize: 18.0,
                 color: Colors.white,

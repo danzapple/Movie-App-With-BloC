@@ -18,10 +18,10 @@ class SearchMovieLoadInProgress extends SearchMovieState {
 class SearchMovieLoadSuccess extends SearchMovieState {
   SearchMovieLoadSuccess(this.searchMovieResult);
 
-  final List<MovieList> searchMovieResult;
+  final List<MovieList>? searchMovieResult;
 
   @override
-  List<Object> get props => [searchMovieResult];
+  List<Object?> get props => [searchMovieResult];
 }
 
 class SearchMovieLoadFailure extends SearchMovieState {

@@ -6,7 +6,7 @@ import 'package:movie_app/models/movie_list.dart';
 class TopRatedMovieRepository {
   Dio dio = Dio();
 
-  Future<List<MovieList>> getTopRatedMovies() async {
+  Future<List<MovieList>?> getTopRatedMovies() async {
     try {
       Response response = await dio.get(Config.topRatedUrl);
       return response.data['results']

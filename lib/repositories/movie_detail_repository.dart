@@ -6,7 +6,7 @@ import 'package:movie_app/models/movie_detail.dart';
 class MovieDetailRepository {
   Dio dio = Dio();
 
-  Future<MovieDetail> getMovieDetail(int movieId) async {
+  Future<MovieDetail> getMovieDetail(int? movieId) async {
     try {
       Response response = await dio.get(Config.movieDetailUrl(movieId));
       return MovieDetail.fromJson(response.data);

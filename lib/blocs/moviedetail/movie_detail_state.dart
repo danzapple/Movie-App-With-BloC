@@ -1,7 +1,7 @@
 part of 'movie_detail_cubit.dart';
 
 @immutable
-abstract class MovieDetailState extends Equatable{
+abstract class MovieDetailState extends Equatable {
   const MovieDetailState();
 }
 
@@ -16,7 +16,6 @@ class MovieDetailLoadInProgress extends MovieDetailState {
 }
 
 class MovieDetailLoadSuccess extends MovieDetailState {
-
   MovieDetailLoadSuccess(this.movieDetail);
 
   final MovieDetail movieDetail;

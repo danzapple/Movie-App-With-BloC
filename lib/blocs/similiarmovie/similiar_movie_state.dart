@@ -16,12 +16,12 @@ class SimiliarMovieLoadInProgress extends SimiliarMovieState {
 }
 
 class SimiliarMovieLoadSuccess extends SimiliarMovieState {
-  final List<MovieList> similiarMovies;
+  final List<MovieList>? similiarMovies;
 
   SimiliarMovieLoadSuccess(this.similiarMovies);
 
   @override
-  List<Object> get props => [similiarMovies];
+  List<Object?> get props => [similiarMovies];
 }
 
 class SimiliarMovieLoadFailure extends SimiliarMovieState {

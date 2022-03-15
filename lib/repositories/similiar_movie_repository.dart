@@ -6,7 +6,7 @@ import 'package:movie_app/models/movie_list.dart';
 class SimiliarMovieRepository {
   Dio dio = Dio();
 
-  Future<List<MovieList>> getSimiliarMovies(int movieId) async {
+  Future<List<MovieList>?> getSimiliarMovies(int? movieId) async {
     try {
       Response response = await dio.get(Config.similiarMovieUrl(movieId));
       return response.data['results']

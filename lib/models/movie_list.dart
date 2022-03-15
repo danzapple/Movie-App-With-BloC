@@ -1,18 +1,18 @@
 class MovieList {
-  double popularity;
-  double voteCount;
-  bool video;
-  String posterPath;
-  int id;
-  bool adult;
-  String backdropPath;
-  String originalLanguage;
-  String originalTitle;
-  List<int> genreIds;
-  String title;
-  double voteAverage;
-  String overview;
-  String releaseDate;
+  double? popularity;
+  double? voteCount;
+  bool? video;
+  String? posterPath;
+  int? id;
+  bool? adult;
+  String? backdropPath;
+  String? originalLanguage;
+  String? originalTitle;
+  List<int>? genreIds;
+  String? title;
+  double? voteAverage;
+  String? overview;
+  String? releaseDate;
 
   MovieList({
     this.popularity,

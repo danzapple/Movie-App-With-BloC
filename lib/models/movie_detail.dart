@@ -24,28 +24,28 @@ class MovieDetail {
     this.images,
   });
 
-  bool adult;
-  String backdropPath;
-  int budget;
-  List<Genre> genres;
-  String homepage;
-  int id;
-  String imdbId;
-  String originalLanguage;
-  String originalTitle;
-  String overview;
-  double popularity;
-  String posterPath;
-  DateTime releaseDate;
-  int revenue;
-  int runtime;
-  String status;
-  String tagline;
-  String title;
-  bool video;
-  double voteAverage;
-  int voteCount;
-  Images images;
+  bool? adult;
+  String? backdropPath;
+  int? budget;
+  List<Genre>? genres;
+  String? homepage;
+  int? id;
+  String? imdbId;
+  String? originalLanguage;
+  String? originalTitle;
+  String? overview;
+  double? popularity;
+  String? posterPath;
+  DateTime? releaseDate;
+  int? revenue;
+  int? runtime;
+  String? status;
+  String? tagline;
+  String? title;
+  bool? video;
+  double? voteAverage;
+  int? voteCount;
+  Images? images;
 
   factory MovieDetail.fromJson(Map<String, dynamic> json) => MovieDetail(
     adult: json["adult"],
@@ -76,7 +76,7 @@ class MovieDetail {
     "adult": adult,
     "backdrop_path": backdropPath,
     "budget": budget,
-    "genres": List<dynamic>.from(genres.map((x) => x.toJson())),
+    "genres": List<dynamic>.from(genres!.map((x) => x.toJson())),
     "homepage": homepage,
     "id": id,
     "imdb_id": imdbId,
@@ -85,7 +85,7 @@ class MovieDetail {
     "overview": overview,
     "popularity": popularity,
     "poster_path": posterPath,
-    "release_date": "${releaseDate.year.toString().padLeft(4, '0')}-${releaseDate.month.toString().padLeft(2, '0')}-${releaseDate.day.toString().padLeft(2, '0')}",
+    "release_date": "${releaseDate!.year.toString().padLeft(4, '0')}-${releaseDate!.month.toString().padLeft(2, '0')}-${releaseDate!.day.toString().padLeft(2, '0')}",
     "revenue": revenue,
     "runtime": runtime,
     "status": status,
@@ -94,7 +94,7 @@ class MovieDetail {
     "video": video,
     "vote_average": voteAverage,
     "vote_count": voteCount,
-    "images": images.toJson(),
+    "images": images!.toJson(),
   };
 }
 
@@ -104,8 +104,8 @@ class Genre {
     this.name,
   });
 
-  int id;
-  String name;
+  int? id;
+  String? name;
 
   factory Genre.fromJson(Map<String, dynamic> json) => Genre(
     id: json["id"],
@@ -124,8 +124,8 @@ class Images {
     this.posters,
   });
 
-  List<Backdrop> backdrops;
-  List<Backdrop> posters;
+  List<Backdrop>? backdrops;
+  List<Backdrop>? posters;
 
   factory Images.fromJson(Map<String, dynamic> json) => Images(
     backdrops: List<Backdrop>.from(json["backdrops"].map((x) => Backdrop.fromJson(x))),
@@ -133,8 +133,8 @@ class Images {
   );
 
   Map<String, dynamic> toJson() => {
-    "backdrops": List<dynamic>.from(backdrops.map((x) => x.toJson())),
-    "posters": List<dynamic>.from(posters.map((x) => x.toJson())),
+    "backdrops": List<dynamic>.from(backdrops!.map((x) => x.toJson())),
+    "posters": List<dynamic>.from(posters!.map((x) => x.toJson())),
   };
 }
 
@@ -149,13 +149,13 @@ class Backdrop {
     this.width,
   });
 
-  double aspectRatio;
-  String filePath;
-  int height;
-  String iso6391;
-  double voteAverage;
-  int voteCount;
-  int width;
+  double? aspectRatio;
+  String? filePath;
+  int? height;
+  String? iso6391;
+  double? voteAverage;
+  int? voteCount;
+  int? width;
 
   factory Backdrop.fromJson(Map<String, dynamic> json) => Backdrop(
     aspectRatio: json["aspect_ratio"].toDouble(),

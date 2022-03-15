@@ -17,10 +17,10 @@ class PopularMovieLoadInProgress extends PopularMovieState {
 class PopularMovieLoadSuccess extends PopularMovieState {
   PopularMovieLoadSuccess(this.popularMovies);
 
-  final List<MovieList> popularMovies;
+  final List<MovieList>? popularMovies;
 
   @override
-  List<Object> get props => [popularMovies];
+  List<Object?> get props => [popularMovies];
 }
 
 class PopularMovieLoadFailure extends PopularMovieState {
