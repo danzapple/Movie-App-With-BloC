@@ -52,7 +52,7 @@ Movie DB is an application to show all movies in the world. The data is provide 
 </div>
 
 
-## Author
+<!-- ## Author -->
 <!-- <center>
   <table>
     <tr>
